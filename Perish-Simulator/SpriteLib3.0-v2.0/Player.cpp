@@ -166,19 +166,6 @@ void Player::MovementUpdate()
 			m_moving = true;
 		}
 	}
-
-	if (Input::GetKeyDown(Key::Space))
-	{
-		m_moving = false;
-
-		if (m_hasPhysics)
-		{
-			m_physBody->SetVelocity(vec3());
-		}
-
-		m_attacking = true;
-		m_locked = true;
-	}
 }
 
 void Player::AnimationUpdate()

@@ -185,11 +185,6 @@ vec3 PhysicsBody::GetVelocity() const
 	return temp;
 }
 
-float PhysicsBody::GetGravityScale() const
-{
-	return m_body->GetGravityScale();
-}
-
 vec4 PhysicsBody::GetColor() const
 {
 	return m_color;
@@ -263,11 +258,6 @@ void PhysicsBody::SetVelocity(vec3 velo)
 	b2Vec2 vel = b2Vec2(velo.x, velo.y);
 
 	m_body->SetLinearVelocity(vel);
-}
-
-void PhysicsBody::SetGravityScale(float gravSc)
-{
-	m_body->SetGravityScale(gravSc);
 }
 
 void PhysicsBody::SetColor(vec4 col)

@@ -6,7 +6,6 @@ AnimationSpritePlayground::AnimationSpritePlayground(std::string name)
 {
 	//no gravity this a top down scene
 	m_gravity = b2Vec2(0.f, 0.f);
-	m_physicsWorld->SetGravity(m_gravity);
 }
 
 void AnimationSpritePlayground::InitScene(float windowWidth, float windowHeight)

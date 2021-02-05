@@ -63,8 +63,6 @@ public:
 	b2Vec2 GetPosition() const;
 	//Gets the current velocity
 	vec3 GetVelocity() const;
-	//Gets the gravity scale of the physics body
-	float GetGravityScale() const;
 	//Gets the debug color
 	vec4 GetColor() const;
 	
@@ -101,8 +99,6 @@ public:
 	void SetPosition(b2Vec2 bodyPos);
 	//Sets the velocity of the phyiscs body
 	void SetVelocity(vec3 velo);
-	//Sets the gravity scale of the physics body
-	void SetGravityScale(float gravSc);
 	//Set the color of the debug draw
 	void SetColor(vec4 col);
 
