@@ -154,21 +154,28 @@ void PhysicsPlayground::KeyboardHold()
 	float speed = 1.f;
 	b2Vec2 vel = b2Vec2(0.f, 0.f);
 
-	if (Input::GetKey(Key::A))
+	if (Input::GetKey(Key::A) || Input::GetKey(Key::D) || Input::GetKey(Key::W) || Input::GetKey(Key::S))
 	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(-40000.f * speed, 0.f), true);
+		if (Input::GetKey(Key::A))
+		{
+			player.GetBody()->SetLinearVelocity(b2Vec2(-40000.f * speed, 0.f));
+		}
+		if (Input::GetKey(Key::D))
+		{
+			player.GetBody()->SetLinearVelocity(b2Vec2(40000.f * speed, 0.f));
+		}
+		if (Input::GetKey(Key::W))
+		{
+			player.GetBody()->SetLinearVelocity(b2Vec2(0.f, 40000.f * speed));
+		}
+		if (Input::GetKey(Key::S))
+		{
+			player.GetBody()->SetLinearVelocity(b2Vec2(0.f, -40000.f * speed));
+		}
 	}
-	if (Input::GetKey(Key::D))
+	else
 	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(40000.f * speed, 0.f), true);
-	}
-	if (Input::GetKey(Key::W))
-	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(0.f, 40000.f * speed), true);
-	}
-	if (Input::GetKey(Key::S))
-	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(0.f, -40000.f * speed), true);
+		player.GetBody()->SetLinearVelocity(b2Vec2(0.f, 0.f));
 	}
 }
 
@@ -185,6 +192,4 @@ void PhysicsPlayground::KeyboardDown()
 
 void PhysicsPlayground::KeyboardUp()
 {
-	
-
 }
