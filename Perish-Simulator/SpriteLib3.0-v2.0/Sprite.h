@@ -12,7 +12,8 @@ public:
 	//Honestly you won't use this constructor
 	//As when you add the Animated Sprite component
 	//You won't be able to give parameters to the component when you create it
-	Sprite(std::string& fileName, int width, int height, float transparency = 1.0f);
+	Sprite(std::string& fileName, int width, int height, float 
+		arency = 1.0f);
 
 	//Loads sprite
 	//*Checks if uvs are setup
