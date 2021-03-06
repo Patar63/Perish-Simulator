@@ -114,9 +114,9 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 150, 10);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		std::string fileName = "Mansion.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 300, 250);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(-100.f, 200.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -126,7 +126,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(30.f), float32(-10.f));
+		tempDef.position.Set(float32(-100.f), float32(200.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
