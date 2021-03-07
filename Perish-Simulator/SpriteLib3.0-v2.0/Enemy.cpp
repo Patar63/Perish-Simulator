@@ -1,17 +1,19 @@
-#include "Player.h"
+#include "Enemy.h"
 
-Player::Player()
+Enemy::Enemy()
 {
 }
 
-Player::Player(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, 
-					AnimationController* controller, Transform* transform, bool hasPhys, PhysicsBody* body)
+Enemy::Enemy(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys, PhysicsBody* body)
 {
-	InitPlayer(fileName, animationJSON, width, height, sprite, controller, transform, hasPhys, body);
+	InitEnemy(fileName, animationJSON, width, height, sprite, controller, transform, hasPhys, body);
 }
 
-void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, 
-							AnimationController* controller, Transform* transform, bool hasPhys, PhysicsBody* body)
+Enemy::~Enemy()
+{
+}
+
+void Enemy::InitEnemy(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys, PhysicsBody* body)
 {
 	//Store references to the components
 	m_sprite = sprite;
@@ -79,91 +81,20 @@ void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int w
 
 }
 
-void Player::Update()
+void Enemy::Update()
 {
 	if (!m_locked)
 	{
 		MovementUpdate();
 	}
-
 	AnimationUpdate();
 }
 
-void Player::MovementUpdate()
+void Enemy::MovementUpdate()
 {
-	m_moving = false;
-
-	if (m_hasPhysics)
-	{
-		float speed = 10.f;
-		vec3 vel = vec3(0.f, 0.f, 0.f);
-
-#ifdef TOPDOWN
-		if (Input::GetKey(Key::W))
-		{
-			vel = vel + vec3(0.f, 1.f, 0.f);
-			m_facing = UP;
-			m_moving = true;
-		}
-		if (Input::GetKey(Key::S))
-		{
-			vel = vel + vec3(0.f, -1.f, 0.f);
-			m_facing = DOWN;
-			m_moving = true;
-		}
-#endif
-
-		if (Input::GetKey(Key::A))
-		{
-			vel = vel + vec3(-1.f, 0.f, 0.f);
-			m_facing = LEFT;
-			m_moving = true;
-		}
-		if (Input::GetKey(Key::D))
-		{
-			vel = vel + vec3(1.f, 0.f, 0.f);
-			m_facing = RIGHT;
-			m_moving = true;
-		}
-
-		m_physBody->SetVelocity(vel * speed);
-	}
-	else
-	{
-		//Regular Movement
-		float speed = 15.f;
-
-#ifdef TOPDOWN
-		if (Input::GetKey(Key::W))
-		{
-			m_transform->SetPositionY(m_transform->GetPositionY() + (speed * Timer::deltaTime));
-			m_facing = UP;
-			m_moving = true;
-		}
-		if (Input::GetKey(Key::S))
-		{
-			m_transform->SetPositionY(m_transform->GetPositionY() - (speed * Timer::deltaTime));
-			m_facing = DOWN;
-			m_moving = true;
-		}
-#endif
-
-		if (Input::GetKey(Key::A))
-		{
-			m_transform->SetPositionX(m_transform->GetPositionX() - (speed * Timer::deltaTime));
-			m_facing = LEFT;
-			m_moving = true;
-		}
-		if (Input::GetKey(Key::D))
-		{
-			m_transform->SetPositionX(m_transform->GetPositionX() + (speed * Timer::deltaTime));
-			m_facing = RIGHT;
-			m_moving = true;
-		}
-	}
 }
 
-void Player::AnimationUpdate()
+void Enemy::AnimationUpdate()
 {
 	int activeAnimation = 0;
 
@@ -188,15 +119,4 @@ void Player::AnimationUpdate()
 			activeAnimation = IDLE;
 		}
 	}
-	else
-	{
-		activeAnimation = IDLE;
-	}
-
-	SetActiveAnimation(activeAnimation + (int)m_facing);
-}
-
-void Player::SetActiveAnimation(int anim)
-{
-	m_animController->SetActiveAnim(anim);
 }
