@@ -98,11 +98,6 @@ void Player::MovementUpdate()
 		float speed = 10.f;
 		vec3 vel = vec3(0.f, 0.f, 0.f);
 
-		if (Input::GetKey(Key::Shift))
-		{
-			speed *= 7.f;
-		}
-
 #ifdef TOPDOWN
 		if (Input::GetKey(Key::W))
 		{

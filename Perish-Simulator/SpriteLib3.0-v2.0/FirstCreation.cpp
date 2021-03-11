@@ -50,7 +50,7 @@ void FirstCreation::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 
 		//Sets up components
-		std::string fileName = "HelloWorld.png";
+		std::string fileName = "OutsideFull.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 750, 750);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 0.f));
 	}
@@ -66,7 +66,7 @@ void FirstCreation::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 
 		//Sets up components
-		std::string fileName = "LinkStandby.png";
+		std::string fileName = "CharacterStandby.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 40, 40);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 2.f));
