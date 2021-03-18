@@ -78,7 +78,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1000.f, 0.f, 0.f));
 	}
 	
-	//Link entity
+	//player entity
 	{
 		/*Scene::CreatePhysicsSprite(m_sceneReg, "CharacterStandby", 80, 60, 1.f, vec3(0.f, 30.f, 2.f), b2_dynamicBody, 0.f, 0.f, true, true)*/
 
@@ -151,7 +151,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	}
 
 
-	//Setup static Top Platform
+	//Setup the mansion object
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
@@ -187,6 +187,9 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 }
+
+
+
 
 void PhysicsPlayground::Update()
 {
