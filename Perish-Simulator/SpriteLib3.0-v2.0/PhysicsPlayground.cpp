@@ -80,8 +80,6 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	
 	//player entity
 	{
-		/*Scene::CreatePhysicsSprite(m_sceneReg, "CharacterStandby", 80, 60, 1.f, vec3(0.f, 30.f, 2.f), b2_dynamicBody, 0.f, 0.f, true, true)*/
-
 		auto entity = ECS::CreateEntity();
 		ECS::SetIsMainPlayer(entity, true);
 
