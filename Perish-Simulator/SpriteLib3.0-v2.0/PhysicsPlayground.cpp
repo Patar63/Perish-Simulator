@@ -12,6 +12,8 @@ PhysicsPlayground::PhysicsPlayground(std::string name)
 	m_physicsWorld->SetContactListener(&listener);
 }
 
+static float Px = 0.0, Py = 0.0;
+int mainCam = MainEntities::MainCamera();
 void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 {
 	//Dynamically allocates the register
@@ -72,8 +74,8 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 
 		//Set up the components
-		std::string fileName = "Floor 1.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 500, 350);
+		std::string fileName = "floorplan.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 700, 700);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1000.f, 0.f, 0.f));
 	}
@@ -225,6 +227,20 @@ void PhysicsPlayground::KeyboardHold()
 	{
 		player.GetBody()->SetLinearVelocity(b2Vec2(0.f, 0.f));
 	}
+	Px = m_sceneReg->get<Camera>(mainCam).GetPositionX();
+	Py = m_sceneReg->get<Camera>(mainCam).GetPositionY();
+	std::cout << Px << ", " << Py << "\n";
+
+	//works the doors
+	if (Px > -30 && Px < 25 && Py > 50)
+	{
+		player.SetPosition(b2Vec2(810.f, -269.f));
+	}
+	if (Px > 795 && Px < 835 && Py < 300)
+	{
+		player.SetPosition(b2Vec2(0.f, 25.f));
+	}
+
 }
 
 void PhysicsPlayground::KeyboardDown()
