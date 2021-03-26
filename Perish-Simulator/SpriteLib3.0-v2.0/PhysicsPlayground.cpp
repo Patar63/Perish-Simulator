@@ -232,11 +232,11 @@ void PhysicsPlayground::KeyboardHold()
 	std::cout << Px << ", " << Py << "\n";
 
 	//works the doors
-	if (Px > -30 && Px < 25 && Py > 50)
+	if (Px > -30 && Px < 33 && Py > 44 && Py < 80)
 	{
-		player.SetPosition(b2Vec2(810.f, -269.f));
+		player.SetPosition(b2Vec2(810.f, -255.f));
 	}
-	if (Px > 795 && Px < 835 && Py < -300)
+	if (Px > 785 && Px < 830 && Py < -260)
 	{
 		player.SetPosition(b2Vec2(0.f, 25.f));
 	}
