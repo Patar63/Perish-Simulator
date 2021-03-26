@@ -93,7 +93,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up the components
 		std::string fileName = "CharacterStandby.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 40, 30);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 20,44);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 2.f));
 
