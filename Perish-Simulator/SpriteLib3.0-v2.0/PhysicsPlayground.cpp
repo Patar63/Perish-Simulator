@@ -75,9 +75,9 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 		//Set up the components
 		std::string fileName = "floorplan.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 700, 700);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 1000, 1000);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1000.f, 0.f, 0.f));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1076.f, 176.f, 0.f));
 	}
 	
 	//player entity
