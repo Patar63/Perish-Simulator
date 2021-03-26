@@ -236,7 +236,7 @@ void PhysicsPlayground::KeyboardHold()
 	{
 		player.SetPosition(b2Vec2(810.f, -269.f));
 	}
-	if (Px > 795 && Px < 835 && Py < 300)
+	if (Px > 795 && Px < 835 && Py < -300)
 	{
 		player.SetPosition(b2Vec2(0.f, 25.f));
 	}
