@@ -111,6 +111,22 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1500.f, 175.f, 0.f));
 	}
+
+	//setsup side room 1
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Set up the components
+		std::string fileName = "bigsquareroom.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 400, 400);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(2000.f, 176.f, 0.f));
+	}
 	
 	//player entity
 	{
@@ -257,6 +273,15 @@ void PhysicsPlayground::KeyboardHold()
 	if (Px > 1490 && Px < 1525 && Py < 5)
 	{
 		player.SetPosition(b2Vec2(1165.f, 525.f));
+	}
+	//hall to lower 
+	if (Px > 1565 && Px < 1585 && Py > 60 && Py < 95)
+	{
+		player.SetPosition(b2Vec2(1825.f, 220.f));
+	}
+	if (Px > 1800 && Px < 1810 && Py < 240 && Py > 195)
+	{
+		player.SetPosition(b2Vec2(1550.f, 85.f));
 	}
 
 }
