@@ -95,6 +95,22 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1076.f, 500.f, 0.f));
 	}
+
+	//setup hallway
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Set up the components
+		std::string fileName = "hallway.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 150, 400);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1500.f, 175.f, 0.f));
+	}
 	
 	//player entity
 	{
@@ -215,6 +231,7 @@ void PhysicsPlayground::KeyboardHold()
 	std::cout << Px << ", " << Py << "\n";
 
 	//works the doors
+	//outside to first
 	if (Px > -30 && Px < 33 && Py > 44 && Py < 80)
 	{
 		player.SetPosition(b2Vec2(1075.f, 80.f));
@@ -223,6 +240,7 @@ void PhysicsPlayground::KeyboardHold()
 	{
 		player.SetPosition(b2Vec2(0.f, 25.f));
 	}
+	//first to second
 	if (Px > 1050 && Px < 1100 && Py > 240 && Py < 300)
 	{
 		player.SetPosition(b2Vec2(1070.f, 435.f));
@@ -230,6 +248,15 @@ void PhysicsPlayground::KeyboardHold()
 	if (Px > 1050 && Px < 1100 && Py < 420 && Py > 350)
 	{
 		player.SetPosition(b2Vec2(1070.f, 225.f));
+	}
+	//second to hall
+	if (Px > 1145 && Px < 1195 && Py > 540 && Py < 560)
+	{
+		player.SetPosition(b2Vec2(1505.f, 10.f));
+	}
+	if (Px > 1490 && Px < 1525 && Py < 5)
+	{
+		player.SetPosition(b2Vec2(1165.f, 525.f));
 	}
 
 }
