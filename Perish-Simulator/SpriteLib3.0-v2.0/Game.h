@@ -85,6 +85,9 @@ private:
 
 	//Xbox Input
 	XInputManager input;
+
+	//pointer to start
+	Start* startscene;
 };
 
 

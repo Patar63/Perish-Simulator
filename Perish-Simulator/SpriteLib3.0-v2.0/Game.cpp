@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include "Start.h"
 #include <random>
 
 
@@ -33,14 +33,15 @@ void Game::InitGame()
 	//Grabs the initialized window
 	m_window = BackEnd::GetWindow();
 
+	startscene = new Start("Burton Hollow");
+
 	//Creates a new scene.
 	//Replace this with your own scene.
-	m_scenes.push_back(new FirstCreation("FIRST SCENE!!!!"));
+	m_scenes.push_back(startscene);
 	m_scenes.push_back(new PhysicsPlayground("Burton Hollow"));
-	m_scenes.push_back(new AnimationSpritePlayground("Animation TIEM!!!!"));
 	 
 	//Sets active scene reference to our scene
-	m_activeScene = m_scenes[1];
+	m_activeScene = m_scenes[0];
 
 	m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
 
@@ -208,6 +209,19 @@ void Game::KeyboardHold()
 	//Active scene now captures this input and can use it
 	//Look at base Scene class for more info.
 	m_activeScene->KeyboardHold();
+
+	//button functions
+	if (m_activeScene == m_scenes[0] && Input::GetKey(Key::Space) && startscene->choice == 0)
+	{
+		m_activeScene->Unload();
+		m_activeScene = m_scenes[1];
+		m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
+		m_register = m_activeScene->GetScene();
+	}
+	if (m_activeScene == m_scenes[0] && Input::GetKey(Key::Space) && startscene->choice == 3)
+	{
+		exit(0);
+	}
 }
 
 void Game::KeyboardDown()
