@@ -124,6 +124,39 @@ void Scene::CreateCameraEntity(bool mainCamera, float windowWidth, float windowH
 		}
 	}
 }
+void Scene::boundary(int spriteSizeX, int spriteSizeY, float positionX, float positionY, int angle, float transparency)
+{
+	//Creates entity 
+	auto entity = ECS::CreateEntity();
+
+	//Add components 
+	ECS::AttachComponent<Sprite>(entity);
+	ECS::AttachComponent<Transform>(entity);
+	ECS::AttachComponent<PhysicsBody>(entity);
+
+	//Sets up components 
+	std::string fileName = "x.png";
+	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, spriteSizeX, spriteSizeY);
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	ECS::GetComponent<Sprite>(entity).SetTransparency(transparency);
+
+	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	float shrinkX = 0.f;
+	float shrinkY = 0.f;
+	b2Body* tempBody;
+	b2BodyDef tempDef;
+	tempDef.type = b2_staticBody;
+	tempDef.position.Set(float32(positionX), float32(positionY));
+
+	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, OBJECTS | ENVIRONMENT | ENEMY);
+	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	tempPhsBody.SetRotationAngleDeg(angle);
+}
 
 entt::registry* Scene::GetScene() const
 {

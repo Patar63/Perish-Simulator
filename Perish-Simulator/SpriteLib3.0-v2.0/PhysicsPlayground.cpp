@@ -109,7 +109,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	Scene::boundary(120, 5, 1160, 404, 0, 0); //wall
 	Scene::boundary(120, 5, 989, 404, 0, 0); //wall
 	Scene::boundary(5, 150, 936, 539, 0, 0); //book shelf
-	Scene::boundary(25, 5, 1000, 539, 0, 0);
+	Scene::boundary(145, 10, 1060, 512.5, 0, 0);//table and chair
 
 	//setup hallway
 	{
@@ -126,9 +126,17 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1500.f, 175.f, 0.f));
 	}
-	Scene::boundary(150, 5, 1500, 310, 0, 0);
-	//Scene::boundary(150, 5, 1500, 320, 0, 0);
-	Scene::boundary(5, 400, 1417, 175, 0, 0);
+	//hallway boundaries
+	Scene::boundary(50, 5, 1450, 330, 0, 0); // top wall
+	Scene::boundary(50, 5, 1550, 330, 0, 0); // top wall
+	Scene::boundary(50, 5, 1450, -18, 0, 0); // bottom wall
+	Scene::boundary(50, 5, 1550, -18, 0, 0); // bottom wall
+	Scene::boundary(5, 400, 1417, 175, 0, 0); //left wall
+	Scene::boundary(5, 75, 1585, 292, 0, 0); //right wall
+	Scene::boundary(5, 105, 1585, 152, 0, 0); //right wall
+	Scene::boundary(5, 65, 1585, 10, 0, 0); // right wall
+	Scene::boundary(5, 45, 1442, 275, 0, 0); // top vase
+	Scene::boundary(5, 35, 1442, 115, 0, 0); // bottom vase
 
 	//setsup side room 1
 	{
@@ -145,6 +153,17 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(2000.f, 176.f, 0.f));
 	}
+	//side room 1 boundaries
+	Scene::boundary(400, 5, 2000, -20, 0, 0); //bottom wall
+	Scene::boundary(400, 5, 2000, 306, 0, 0); //top wall
+	Scene::boundary(5, 400, 2208, 176, 0, 0); //right wall
+	Scene::boundary(5, 205, 1797, 87.5, 0, 0); //left wall
+	Scene::boundary(5, 50, 1797, 270, 0, 0); //left wall
+	Scene::boundary(160, 20, 2027.5, 155, 0, 0); //table
+	Scene::boundary(60, 5, 2085, 270, 0, 0); //top right shelf
+	Scene::boundary(60, 5, 1932.5, 270, 0, 0); //top left shelf
+	Scene::boundary(60, 10, 2085, 52.5, 0, 0); //bottom right shelf
+	Scene::boundary(60, 10, 1934, 52.5, 0, 0); //bottom left shelf
 
 	//setsup side room 2
 	{
@@ -157,10 +176,17 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 		//Set up the components
 		std::string fileName = "key room.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 300, 150);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 300, 175);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(2000.f, 500.f, 0.f));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(2000.f, 520.f, 0.f));
 	}
+	//side room 2 boundaries
+	Scene::boundary(300, 5, 2000, 582.5, 0, 0); //top wall
+	Scene::boundary(300, 5, 2000, 435, 0, 0); //bottom wall
+	Scene::boundary(5, 175, 2160, 520, 0, 0); // right wall
+	Scene::boundary(5, 40, 1845, 550, 0, 0); //left wall
+	Scene::boundary(5, 40, 1845, 465, 0, 0); //left wall
+
 	//setsup stairs room
 	{
 		//Creates entity
@@ -172,10 +198,18 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 		//Set up the components
 		std::string fileName = "stairs room.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 200, 200);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 200, 155);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1000.f, 1000.f, 0.f));
 	}
+	//stairs room boundaries
+	Scene::boundary(200, 5, 1000, 1060, 0, 0); //top wall
+	Scene::boundary(125, 5, 1045, 923, 0, 0); //bottom wall
+	Scene::boundary(50, 5, 903, 923, 0, 0); //bottom wall
+	Scene::boundary(5, 155, 890, 1000, 0, 0); //left wall
+	Scene::boundary(5, 155, 1115, 1000, 0, 0); //right wall
+	Scene::boundary(25, 25, 1050, 1000, 0, 0); //trapdoor
+
 
 	//setsup final room
 	{
@@ -188,10 +222,15 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 		//Set up the components
 		std::string fileName = "basement.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 500, 500);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 350, 350);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 1000.f, 0.f));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(-50.f, 1000.f, 0.f));
 	}
+	//final room boundaries
+	Scene::boundary(350, 5, -50, 1123, 0, 0); //top wall
+	Scene::boundary(350, 5, -50, 838, 0, 0); //bottom wall
+	Scene::boundary(5, 350, -225, 1000, 0, 0); //left wall
+	Scene::boundary(5, 350, 125, 1000, 0, 0); // right wall
 	
 	//player entity
 	{
@@ -349,22 +388,23 @@ void PhysicsPlayground::KeyboardHold()
 	{
 		player.SetPosition(b2Vec2(1550.f, 85.f));
 	}
-	if (Px > 1855 && Px < 1870 && Py > 490 && Py < 515)
+	if (Px > 1855 && Px < 1870 && Py > 475 && Py < 510)
 	{
 		player.SetPosition(b2Vec2(1555.f, 235.f));
 	}
-	if (Px > 1560 && Px < 1570 && Py > 230 && Py < 265)
+	if (Px > 1560 && Px < 1570 && Py > 215 && Py < 260)
 	{
 		player.SetPosition(b2Vec2(1875.f, 500.f));
 	}
-	if (Px > 1485 && Px < 1515 && Py > 310 && Py < 335)
+	if (Px > 1485 && Px < 1515 && Py > 305 && Py < 335)
 	{
-		player.SetPosition(b2Vec2(965.f, 940.f));
+		player.SetPosition(b2Vec2(958.f, 945.f));
 	}
-	if (Px > 950 && Px <970 && Py > 920 && Py < 930)
+	if (Px > 950 && Px <970 && Py > 920 && Py < 940)
 	{
-		player.SetPosition(b2Vec2(1500.f, 300.f));
+		player.SetPosition(b2Vec2(1500.f, 285.f));
 	}
+	//stairs to basement
 	if (Px > 1000 && Px < 1055 && Py > 955 && Py < 1015)
 	{
 		player.SetPosition(b2Vec2(-195.f, 985.f));
