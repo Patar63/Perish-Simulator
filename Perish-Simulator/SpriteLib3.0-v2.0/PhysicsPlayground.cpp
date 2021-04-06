@@ -126,6 +126,53 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(2000.f, 176.f, 0.f));
 	}
+
+	//setsup side room 2
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Set up the components
+		std::string fileName = "key room.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 300, 150);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(2000.f, 500.f, 0.f));
+	}
+	//setsup stairs room
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Set up the components
+		std::string fileName = "stairs room.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 200, 200);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1000.f, 1000.f, 0.f));
+	}
+
+	//setsup final room
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Set up the components
+		std::string fileName = "basement.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 500, 500);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 1000.f, 0.f));
+	}
 	
 	//player entity
 	{
@@ -282,7 +329,26 @@ void PhysicsPlayground::KeyboardHold()
 	{
 		player.SetPosition(b2Vec2(1550.f, 85.f));
 	}
-
+	if (Px > 1855 && Px < 1870 && Py > 490 && Py < 515)
+	{
+		player.SetPosition(b2Vec2(1555.f, 235.f));
+	}
+	if (Px > 1560 && Px < 1570 && Py > 230 && Py < 265)
+	{
+		player.SetPosition(b2Vec2(1875.f, 500.f));
+	}
+	if (Px > 1485 && Px < 1515 && Py > 310 && Py < 335)
+	{
+		player.SetPosition(b2Vec2(965.f, 940.f));
+	}
+	if (Px > 950 && Px <970 && Py > 920 && Py < 930)
+	{
+		player.SetPosition(b2Vec2(1500.f, 300.f));
+	}
+	if (Px > 1000 && Px < 1055 && Py > 955 && Py < 1015)
+	{
+		player.SetPosition(b2Vec2(-195.f, 985.f));
+	}
 }
 
 void PhysicsPlayground::KeyboardDown()
