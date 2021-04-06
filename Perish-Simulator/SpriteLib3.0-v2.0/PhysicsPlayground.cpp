@@ -78,6 +78,14 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1076.f, 176.f, 0.f));
 	}
+	//boundaries for first room
+	Scene::boundary(5, 250, 1210, 176, 0, 0); //wall
+	Scene::boundary(5, 250, 940, 176, 0, 0); //wall
+	Scene::boundary(250, 5, 1076, 280, 0, 0); //wall
+	Scene::boundary(100, 5, 1167, 58, 0, 0); //wall
+	Scene::boundary(100, 5, 991, 58, 0, 0); //wall
+	Scene::boundary(20, 17, 1200, 137, 0, 0); //counter
+	Scene::boundary(20, 18, 955, 133.5, 0, 0); //counter
 
 	//setup second room
 	{
@@ -94,6 +102,14 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1076.f, 500.f, 0.f));
 	}
+	//second room boundaries
+	Scene::boundary(5, 200, 1238, 500, 0, 0); //wall
+	Scene::boundary(5, 200, 917, 500, 0, 0); //wall
+	Scene::boundary(300, 5, 1076, 574, 0, 0); //wall
+	Scene::boundary(120, 5, 1160, 404, 0, 0); //wall
+	Scene::boundary(120, 5, 989, 404, 0, 0); //wall
+	Scene::boundary(5, 150, 936, 539, 0, 0); //book shelf
+	Scene::boundary(25, 5, 1000, 539, 0, 0);
 
 	//setup hallway
 	{
@@ -110,6 +126,9 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1500.f, 175.f, 0.f));
 	}
+	Scene::boundary(150, 5, 1500, 310, 0, 0);
+	//Scene::boundary(150, 5, 1500, 320, 0, 0);
+	Scene::boundary(5, 400, 1417, 175, 0, 0);
 
 	//setsup side room 1
 	{
@@ -211,6 +230,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetFixedRotation(true);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 	}
+
 
 	//Setup the mansion object
 	{

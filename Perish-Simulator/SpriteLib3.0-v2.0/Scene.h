@@ -9,6 +9,7 @@
 #include <SDL2/SDL.h>
 
 
+
 class Scene
 {
 public:
@@ -39,6 +40,9 @@ public:
 	virtual void KeyboardHold() { };
 	virtual void KeyboardDown() { };
 	virtual void KeyboardUp() { };
+
+	//function for boundaries
+	void boundary(int spriteSizeX, int spriteSizeY, float positionX, float positionY, int angle, float transparency); 
 
 	//Mouse Input
 	//Because these are virtual you can override them in your inherited classes.
