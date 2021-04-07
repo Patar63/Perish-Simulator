@@ -62,6 +62,10 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 0.f));
 	}
+	Scene::boundary(750, 20, 0, 380, 0, 0);
+	Scene::boundary(750, 20, 0, -375, 0, 0);
+	Scene::boundary(20, 750, 375, 0, 0, 0);
+	Scene::boundary(20, 750, -375, 0, 0, 0);
 
 	//sets first room
 	{
