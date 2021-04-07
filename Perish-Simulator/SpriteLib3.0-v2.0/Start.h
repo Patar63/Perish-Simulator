@@ -17,6 +17,7 @@ public:
 	void KeyboardUp() override;
 
 	int choice = 0;
+	bool menu = true;
 
 private:
 	float m_width;
@@ -25,4 +26,5 @@ private:
 	unsigned ext;
 	unsigned cntrl;
 	unsigned crdt;
+	unsigned ttl;
 };
