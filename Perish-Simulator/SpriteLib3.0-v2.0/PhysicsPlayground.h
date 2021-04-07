@@ -17,6 +17,10 @@ public:
 	void KeyboardDown() override;
 	void KeyboardUp() override;
 
+private:
+	bool lock = true;
+	unsigned key;
+
 protected:
 	PhysicsPlaygroundListener listener;
 

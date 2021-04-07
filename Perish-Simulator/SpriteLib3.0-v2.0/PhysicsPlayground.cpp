@@ -129,6 +129,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	//hallway boundaries
 	Scene::boundary(50, 5, 1450, 330, 0, 0); // top wall
 	Scene::boundary(50, 5, 1550, 330, 0, 0); // top wall
+	Scene::boundary(100, 5, 1500, 340, 0, 0);//door when locked
 	Scene::boundary(50, 5, 1450, -18, 0, 0); // bottom wall
 	Scene::boundary(50, 5, 1550, -18, 0, 0); // bottom wall
 	Scene::boundary(5, 400, 1417, 175, 0, 0); //left wall
@@ -180,6 +181,24 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(2000.f, 520.f, 0.f));
 	}
+
+	//key object setup
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		key = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Set up the components
+		std::string fileName = "key.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 10, 10);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(2000.f, 500.f, 1.f));
+	}
+
 	//side room 2 boundaries
 	Scene::boundary(300, 5, 2000, 582.5, 0, 0); //top wall
 	Scene::boundary(300, 5, 2000, 435, 0, 0); //bottom wall
@@ -313,7 +332,18 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 void PhysicsPlayground::Update()
 {
-	
+	if (lock == false)
+	{
+		auto& sprite = ECS::GetComponent<Sprite>(key);
+		std::string fileName = "x.png";
+		sprite.LoadSprite(fileName, 10, 10);
+	}
+	else
+	{
+		auto& sprite = ECS::GetComponent<Sprite>(key);
+		std::string fileName = "key.png";
+		sprite.LoadSprite(fileName, 10, 10);
+	}
 }
 
 
@@ -350,6 +380,12 @@ void PhysicsPlayground::KeyboardHold()
 	Px = m_sceneReg->get<Camera>(mainCam).GetPositionX();
 	Py = m_sceneReg->get<Camera>(mainCam).GetPositionY();
 	std::cout << Px << ", " << Py << "\n";
+
+	//variable for key
+	if (Px > 1990 && Px < 2015 && Py > 505 && Py < 525)
+	{
+		lock = false;
+	}
 
 	//works the doors
 	//outside to first
@@ -388,6 +424,7 @@ void PhysicsPlayground::KeyboardHold()
 	{
 		player.SetPosition(b2Vec2(1550.f, 85.f));
 	}
+	//hall to upper
 	if (Px > 1855 && Px < 1870 && Py > 475 && Py < 510)
 	{
 		player.SetPosition(b2Vec2(1555.f, 235.f));
@@ -396,7 +433,8 @@ void PhysicsPlayground::KeyboardHold()
 	{
 		player.SetPosition(b2Vec2(1875.f, 500.f));
 	}
-	if (Px > 1485 && Px < 1515 && Py > 305 && Py < 335)
+	//hall to stairs
+	if (lock == false && Px > 1485 && Px < 1515 && Py > 305 && Py < 335)
 	{
 		player.SetPosition(b2Vec2(958.f, 945.f));
 	}
