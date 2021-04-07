@@ -393,7 +393,7 @@ void PhysicsPlayground::KeyboardHold()
 	{
 		player.SetPosition(b2Vec2(1075.f, 80.f));
 	}
-	if (Px > 1049 && Px < 1093 && Py < 75)
+	if (Px > 1049 && Px < 1110 && Py < 75)
 	{
 		player.SetPosition(b2Vec2(0.f, 25.f));
 	}
@@ -425,7 +425,7 @@ void PhysicsPlayground::KeyboardHold()
 		player.SetPosition(b2Vec2(1550.f, 85.f));
 	}
 	//hall to upper
-	if (Px > 1855 && Px < 1870 && Py > 475 && Py < 510)
+	if (Px > 1855 && Px < 1870 && Py > 475 && Py < 520)
 	{
 		player.SetPosition(b2Vec2(1555.f, 235.f));
 	}
