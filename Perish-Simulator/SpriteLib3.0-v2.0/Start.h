@@ -9,6 +9,7 @@ public:
 	Start(std::string name);
 
 	void InitScene(float width, float height) override;
+	void InitSound();
 	void Update() override;
 
 	//Input overrides

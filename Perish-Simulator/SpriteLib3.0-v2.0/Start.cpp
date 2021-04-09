@@ -1,5 +1,6 @@
 #include "Start.h"
 #include "Input.h"
+#include <SFML/Audio.hpp>
 
 Start::Start(std::string name)
 	: Scene(name)
@@ -122,6 +123,10 @@ void Start::InitScene(float width, float height)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(-300.f, -50.f, 1.f));
 	}
+}
+
+void Start::InitSound()
+{
 }
 
 void Start::Update()
