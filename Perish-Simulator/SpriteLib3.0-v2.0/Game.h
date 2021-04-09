@@ -88,6 +88,7 @@ private:
 
 	//pointer to start
 	Start* startscene;
+	PhysicsPlayground* hollow;
 };
 
 

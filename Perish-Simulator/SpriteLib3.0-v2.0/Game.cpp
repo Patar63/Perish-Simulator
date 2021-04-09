@@ -34,11 +34,12 @@ void Game::InitGame()
 	m_window = BackEnd::GetWindow();
 
 	startscene = new Start("Burton Hollow");
+	hollow = new PhysicsPlayground("Burton Hollow");
 
 	//Creates a new scene.
 	//Replace this with your own scene.
 	m_scenes.push_back(startscene);
-	m_scenes.push_back(new PhysicsPlayground("Burton Hollow"));
+	m_scenes.push_back(hollow);
 	 
 	//Sets active scene reference to our scene
 	m_activeScene = m_scenes[0];
@@ -224,6 +225,12 @@ void Game::KeyboardHold()
 		{
 			exit(0);
 		}
+	}
+
+	if (hollow->end == true)
+	{
+
+		exit(0);
 	}
 }
 

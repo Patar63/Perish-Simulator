@@ -249,6 +249,39 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(-50.f, 1000.f, 0.f));
 	}
+
+	//setup the end condition crystal 
+	{
+		//Creates entity 
+		auto entity = ECS::CreateEntity();
+
+		//Add components 
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+
+		//Sets up components 
+		std::string fileName = "Crystal.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 30, 50);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(-45.f, 985.f, 2.f));
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(-45.f), float32(985.f));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef); 
+		
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
+
 	//final room boundaries
 	Scene::boundary(350, 5, -50, 1123, 0, 0); //top wall
 	Scene::boundary(350, 5, -50, 838, 0, 0); //bottom wall
@@ -450,6 +483,11 @@ void PhysicsPlayground::KeyboardHold()
 	if (Px > 1000 && Px < 1055 && Py > 955 && Py < 1015)
 	{
 		player.SetPosition(b2Vec2(-195.f, 985.f));
+	}
+
+	if (Px > -88 && Px < 987 && Py > 931 && Py < 1039 && Input::GetKey(Key::E))
+	{
+		end = true;
 	}
 }
 

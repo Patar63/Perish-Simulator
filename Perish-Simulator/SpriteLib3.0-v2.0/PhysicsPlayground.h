@@ -17,6 +17,8 @@ public:
 	void KeyboardDown() override;
 	void KeyboardUp() override;
 
+	bool end = false;
+
 private:
 	bool lock = true;
 	unsigned key;
